@@ -1,0 +1,50 @@
+// imports
+@import "parts/_loading.scss";
+@import "parts/_landing.scss";
+@import "parts/_content.scss";
+@import "parts/_nav.scss";
+@import "parts/_culture.scss";
+@import "parts/_why.scss";
+@import "parts/_food.scss";
+@import "parts/_about.scss";
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none; //for firefox
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+// .master{
+//     // overflow-x: hidden;
+//     // position: relative; breaks website
+// }
+
+// set & forget
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  // overflow-y: hidden;
+}
+
+.dynamic {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  .dynamic {
+    display: block;
+    margin: auto;
+    width: 90%;
+    height: 10vw;
+    path {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: transparent;
+    }
+  }
+}

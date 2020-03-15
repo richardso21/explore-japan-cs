@@ -1,0 +1,210 @@
+.nav {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+}
+
+@media screen and (min-width: 900px) {
+  .nav {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.nav.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-checkbox {
+  display: none;
+}
+
+// styling button (e.g. color and shape)
+.nav-button {
+  position: fixed;
+  z-index: 2;
+  top: 2rem;
+  left: 2rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50px;
+  background: rgba(255, 0, 0, 0.9);
+  box-shadow: 0 0 2rem black;
+  cursor: pointer;
+  transition: height 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+// styling hamburger (triple lines)
+.nav-icon {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.nav-icon::before,
+.nav-icon::after {
+  content: "";
+}
+
+.nav-icon::before {
+  position: absolute;
+  top: -0.4rem;
+  left: 0;
+}
+
+.nav-icon::after {
+  position: absolute;
+  top: 0.4rem;
+  left: 0;
+}
+
+.nav-icon,
+.nav-icon::before,
+.nav-icon::after {
+  width: 1.5rem;
+  height: 2px;
+  background-color: black;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.nav-button:hover .nav-icon::before {
+  top: -0.5rem;
+}
+
+.nav-button:hover .nav-icon::after {
+  top: 0.5rem;
+}
+
+// animations when hamburger is clicked
+.nav-checkbox:checked + .nav-button .nav-icon {
+  background-color: transparent;
+}
+
+.nav-checkbox:checked + .nav-button .nav-icon::before {
+  transform: rotate(135deg);
+  top: 0;
+}
+
+.nav-checkbox:checked + .nav-button .nav-icon::after {
+  transform: rotate(-135deg);
+  top: 0;
+}
+
+// list items and wrapper
+.nav-wrap {
+  position: fixed;
+  padding: 4.5rem 0 0 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.nav-list {
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0.75rem 0;
+  li {
+    a {
+      padding: 0.75rem 0;
+      visibility: hidden;
+      opacity: 0;
+      display: flex;
+      flex-direction: row;
+      pointer-events: all;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+    }
+    a:link,
+    a:visited {
+      color: red;
+      text-decoration: none;
+    }
+    img {
+      transform: scale(0);
+      height: 1.5rem;
+      margin: 0 1.3rem;
+      transition: transform 0.2s ease;
+    }
+    span {
+      margin: 0 0 0 0.5rem;
+      font-weight: 800;
+      text-decoration: none;
+      transform: translateX(50px);
+      transition: transform 0.2s ease-out;
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        width: 0px;
+        height: 2px;
+        // margin: 0.5rem 0 0 0;
+        transition: all 0.1s ease;
+        left: 0;
+        background-color: red;
+      }
+    }
+  }
+}
+
+// auto-apply staggering delay onto list items
+@for $i from 0 through 4 {
+  .nav-list li:nth-child(#{$i + 1}) span {
+    transition-delay: 0.05s * $i;
+  }
+}
+
+@for $i from 0 through 4 {
+  .nav-list li:nth-child(#{$i + 1}) img {
+    transition-delay: 0.05s * $i;
+  }
+}
+
+// blur background
+.nav-outer-bg {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  z-index: 1;
+  pointer-events: none;
+  transition: all 0.5s;
+}
+
+// animations for remaining items when clicked
+.nav-checkbox:checked ~ .nav-button {
+  height: 19rem;
+  box-shadow: 0 0 5rem black;
+}
+
+.nav-checkbox:checked ~ .nav-outer-bg {
+  backdrop-filter: blur(15px);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.nav-checkbox:checked ~ .nav-wrap .nav-list li a {
+  visibility: visible;
+  opacity: 1;
+}
+
+.nav-checkbox:checked ~ .nav-wrap .nav-list li a img {
+  transform: scale(1);
+}
+
+.nav-checkbox:checked ~ .nav-wrap .nav-list li a span {
+  transform: translateX(0px);
+}
+
+.nav-checkbox:checked ~ .nav-wrap .nav-list li a:hover span {
+  &::before,
+  &::after {
+    width: 100%;
+    opacity: 1;
+  }
+}

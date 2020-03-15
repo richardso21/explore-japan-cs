@@ -1,0 +1,69 @@
+.food-img-wrap,
+.con-img-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 90%;
+    padding: 1rem;
+  }
+}
+
+
+.food-large {
+  display: none;
+}
+
+.bg1 {
+  background-image: url("../../media/sushi.jpg");
+}
+
+.bg2 {
+  background-image: url("../../media/ramen.jpg");
+  background-position: top;
+}
+
+.bg3 {
+  background-image: url("../../media/sunset.jpg");
+}
+
+.bg4 {
+  background-image: url("../../media/cool.jpg");
+}
+
+.bg5 {
+  background-image: url("../../media/fuji.jpg");
+}
+
+.food-parallax {
+  position: relative;
+  height: 100vh;
+  // display: -webkit-box;
+  // display: flex;
+  // -webkit-box-align: center;
+  // align-items: center;
+  // -webkit-box-pack: center;
+  // justify-content: center;
+  overflow: hidden;
+}
+
+.food-parallax .food-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 200%;
+  background-size: cover;
+  background-position: center;
+}
+
+
+
+@media screen and (min-width: 900px) {
+  .food-small {
+    display: none;
+  }
+  .food-large {
+    display: block;
+  }
+}

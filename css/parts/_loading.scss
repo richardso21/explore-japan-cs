@@ -1,0 +1,79 @@
+html {
+  overflow: hidden;
+  animation: prevent-scroll 0s ease forwards 2s;
+}
+
+@keyframes prevent-scroll {
+  to {
+    overflow: scroll;
+  }
+}
+
+.loading {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  background: black;
+  animation: fade-out 1s ease forwards 2s, box-none 0s ease forwards 3s;
+}
+
+@keyframes box-none {
+  //necessary so webpage doesn't reload below landing pg
+  from {
+    height: 100%;
+    width: 100%;
+  }
+  to {
+    height: 0;
+    width: 0;
+  }
+}
+
+.loading-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fill-in 0.5s ease forwards 1s,
+    zoom 2s cubic-bezier(0.54, 0.36, 1, -0.33) forwards;
+}
+
+@keyframes zoom {
+  to {
+    height: 250%;
+    width: 250%;
+  }
+}
+
+@keyframes fill-in {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: red;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.loading-svg circle {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 989px;
+  stroke-dashoffset: 989px;
+  animation: line-anim 1.25s ease forwards;
+}
+
+@keyframes line-anim {
+  to {
+    stroke-dashoffset: 0px;
+  }
+}
