@@ -1,12 +1,9 @@
-html {
-  overflow: hidden;
-  animation: prevent-scroll 0s ease forwards 2s;
-}
-
-@keyframes prevent-scroll {
-  to {
-    overflow: scroll;
-  }
+.loading-wrapper {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .loading {
